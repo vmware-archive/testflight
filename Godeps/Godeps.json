@@ -1,0 +1,51 @@
+{
+	"ImportPath": "github.com/concourse/testflight",
+	"GoVersion": "go1.2.1",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/gogoprotobuf/proto",
+			"Rev": "7fd1620f09261338b6b1ca1289ace83aee0ec946"
+		},
+		{
+			"ImportPath": "code.google.com/p/goprotobuf/proto",
+			"Comment": "go.r60-142",
+			"Rev": "556b9de4249f50f311584f75324a45e426324a19"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/garden/client",
+			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/garden/protocol",
+			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/garden/transport",
+			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/garden/warden",
+			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
+			"Rev": "15b5a5cfd977c9f447ecc05b03aed5a9e8c467fe"
+		},
+		{
+			"ImportPath": "github.com/onsi/ginkgo",
+			"Comment": "v1.0.0-16-g12446bb",
+			"Rev": "12446bbcc74950944c897e32ea99cc8d058f9c92"
+		},
+		{
+			"ImportPath": "github.com/onsi/gomega",
+			"Rev": "036273e6f643552b16fe7a6464afd2ae0324992e"
+		},
+		{
+			"ImportPath": "github.com/tedsuo/ifrit",
+			"Rev": "f5c8edd2e5e404742ad194b0979ed4c95214d569"
+		}
+	]
+}

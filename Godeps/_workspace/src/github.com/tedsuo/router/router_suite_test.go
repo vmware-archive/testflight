@@ -1,4 +1,4 @@
-package transport_test
+package router_test
 
 import (
 	. "github.com/onsi/ginkgo"
@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestTransport(t *testing.T) {
+func TestRouter(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Transport Suite")
+	RunSpecs(t, "Router Suite")
 }

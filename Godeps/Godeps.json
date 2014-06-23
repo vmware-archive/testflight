@@ -1,38 +1,46 @@
 {
 	"ImportPath": "github.com/concourse/testflight",
-	"GoVersion": "go1.2.1",
+	"GoVersion": "go1.3",
 	"Packages": [
 		"./..."
 	],
 	"Deps": [
 		{
 			"ImportPath": "code.google.com/p/gogoprotobuf/proto",
-			"Rev": "7fd1620f09261338b6b1ca1289ace83aee0ec946"
+			"Rev": "86d28beb3f2bc5fe92a519b7231379e587399470"
 		},
 		{
 			"ImportPath": "code.google.com/p/goprotobuf/proto",
-			"Comment": "go.r60-142",
-			"Rev": "556b9de4249f50f311584f75324a45e426324a19"
+			"Comment": "go.r60-145",
+			"Rev": "675fb753dc3511869a47813a50b7965ec277db52"
+		},
+		{
+			"ImportPath": "github.com/bmizerany/pat",
+			"Rev": "48be7df2c27e1cec821a3284a683ce6ef90d9052"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/client",
-			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/protocol",
-			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/garden/routes",
+			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/transport",
-			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/warden",
-			"Rev": "fe714b1f5cbae4e6fe1a20a4d5db73329e7da730"
+			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "15b5a5cfd977c9f447ecc05b03aed5a9e8c467fe"
+			"Rev": "f7885e9908e8b597be9e8a518c13dc39d6063a36"
 		},
 		{
 			"ImportPath": "github.com/onsi/ginkgo",
@@ -45,7 +53,11 @@
 		},
 		{
 			"ImportPath": "github.com/tedsuo/ifrit",
-			"Rev": "f5c8edd2e5e404742ad194b0979ed4c95214d569"
+			"Rev": "439138de94ac33aebc7dad33cada3796318845ea"
+		},
+		{
+			"ImportPath": "github.com/tedsuo/router",
+			"Rev": "e148496de27fab9f10ef07f3be00471fa59f58b9"
 		}
 	]
 }

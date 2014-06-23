@@ -2,7 +2,7 @@ package warden
 
 import (
 	"bytes"
-	"fmt"
+	"encoding/json"
 
 	"code.google.com/p/gogoprotobuf/proto"
 )
@@ -10,23 +10,21 @@ import (
 func Messages(msgs ...proto.Message) *bytes.Buffer {
 	buf := bytes.NewBuffer([]byte{})
 
+	encoder := json.NewEncoder(buf)
+
 	for _, msg := range msgs {
-		payload, err := proto.Marshal(msg)
+		payload, err := json.Marshal(msg)
 		if err != nil {
 			panic(err.Error())
 		}
 
-		message := &Message{
+		err = encoder.Encode(&Message{
 			Type:    TypeForMessage(msg).Enum(),
 			Payload: payload,
-		}
-
-		messagePayload, err := proto.Marshal(message)
+		})
 		if err != nil {
-			panic("failed to marshal message")
+			panic("failed to encode message: " + err.Error())
 		}
-
-		buf.Write([]byte(fmt.Sprintf("%d\r\n%s\r\n", len(messagePayload), messagePayload)))
 	}
 
 	return buf
@@ -55,8 +53,6 @@ func TypeForMessage(msg proto.Message) Message_Type {
 		return Message_StreamIn
 	case *StreamOutRequest, *StreamOutResponse:
 		return Message_StreamOut
-	case *StreamChunk:
-		return Message_StreamChunk
 
 	case *LimitMemoryRequest, *LimitMemoryResponse:
 		return Message_LimitMemory
@@ -78,8 +74,6 @@ func TypeForMessage(msg proto.Message) Message_Type {
 		return Message_Ping
 	case *ListRequest, *ListResponse:
 		return Message_List
-	case *EchoRequest, *EchoResponse:
-		return Message_Echo
 	case *CapacityRequest, *CapacityResponse:
 		return Message_Capacity
 	}
@@ -107,8 +101,6 @@ func RequestMessageForType(t Message_Type) proto.Message {
 		return &StreamInRequest{}
 	case Message_StreamOut:
 		return &StreamOutRequest{}
-	case Message_StreamChunk:
-		return &StreamChunk{}
 
 	case Message_LimitMemory:
 		return &LimitMemoryRequest{}
@@ -128,8 +120,6 @@ func RequestMessageForType(t Message_Type) proto.Message {
 		return &PingRequest{}
 	case Message_List:
 		return &ListRequest{}
-	case Message_Echo:
-		return &EchoRequest{}
 	case Message_Capacity:
 		return &CapacityRequest{}
 	}
@@ -156,8 +146,6 @@ func ResponseMessageForType(t Message_Type) proto.Message {
 		return &StreamInResponse{}
 	case Message_StreamOut:
 		return &StreamOutResponse{}
-	case Message_StreamChunk:
-		return &StreamChunk{}
 
 	case Message_LimitMemory:
 		return &LimitMemoryResponse{}
@@ -175,8 +163,6 @@ func ResponseMessageForType(t Message_Type) proto.Message {
 		return &PingResponse{}
 	case Message_List:
 		return &ListResponse{}
-	case Message_Echo:
-		return &EchoResponse{}
 	case Message_Capacity:
 		return &CapacityResponse{}
 	}

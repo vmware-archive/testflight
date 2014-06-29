@@ -43,6 +43,14 @@
 			"Rev": "f7885e9908e8b597be9e8a518c13dc39d6063a36"
 		},
 		{
+			"ImportPath": "github.com/concourse/atc/redisrunner",
+			"Rev": "245b3339e3324d4ca33f2d3a18b799e2e70fce0a"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Rev": "1c7841955920910958c71b1cc1a03f628267d468"
+		},
+		{
 			"ImportPath": "github.com/nu7hatch/gouuid",
 			"Rev": "179d4d0c4d8d407a32af483c2354df1d2c91e6c3"
 		},

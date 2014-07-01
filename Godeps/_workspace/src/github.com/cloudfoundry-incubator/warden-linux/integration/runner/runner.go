@@ -5,10 +5,10 @@ import (
 	"net"
 	"os"
 	"os/exec"
-	"path"
 	"path/filepath"
 	"strconv"
 	"syscall"
+	"time"
 
 	"github.com/cloudfoundry-incubator/garden/client"
 	"github.com/cloudfoundry-incubator/garden/client/connection"
@@ -18,6 +18,8 @@ import (
 )
 
 type Runner struct {
+	addr string
+
 	bin  string
 	argv []string
 
@@ -27,8 +29,10 @@ type Runner struct {
 	tmpdir string
 }
 
-func New(bin, binPath, rootFSPath string, argv ...string) *Runner {
+func New(addr string, bin, binPath, rootFSPath string, argv ...string) *Runner {
 	return &Runner{
+		addr: addr,
+
 		bin:  bin,
 		argv: argv,
 
@@ -63,8 +67,8 @@ func (r *Runner) Run(signals <-chan os.Signal, ready chan<- struct{}) error {
 
 	wardenArgs := append(
 		r.argv,
-		"--listenNetwork", r.Network(),
-		"--listenAddr", r.Addr(),
+		"--listenNetwork", "tcp",
+		"--listenAddr", r.addr,
 		"--bin", r.binPath,
 		"--rootfs", r.rootFSPath,
 		"--depot", depotPath,
@@ -86,6 +90,20 @@ func (r *Runner) Run(signals <-chan os.Signal, ready chan<- struct{}) error {
 		gexec.NewPrefixedWriter("\x1b[91m[e]\x1b[31m[warden-linux]\x1b[0m ", ginkgo.GinkgoWriter),
 	)
 	if err != nil {
+		return err
+	}
+
+	var dialErr error
+	for i := 0; i < 10; i++ {
+		dialErr = r.TryDial()
+		if dialErr == nil {
+			break
+		}
+
+		time.Sleep(time.Second)
+	}
+
+	if dialErr != nil {
 		return err
 	}
 
@@ -123,7 +141,7 @@ dance:
 }
 
 func (r *Runner) TryDial() error {
-	conn, dialErr := net.Dial(r.Network(), r.Addr())
+	conn, dialErr := net.Dial("tcp", r.addr)
 
 	if dialErr == nil {
 		conn.Close()
@@ -134,15 +152,7 @@ func (r *Runner) TryDial() error {
 }
 
 func (r *Runner) NewClient() warden.Client {
-	return client.New(connection.New(r.Network(), r.Addr()))
-}
-
-func (r *Runner) Network() string {
-	return "unix"
-}
-
-func (r *Runner) Addr() string {
-	return path.Join(r.tmpdir, "warden.sock")
+	return client.New(connection.New("tcp", r.addr))
 }
 
 func (r *Runner) destroyContainers() error {

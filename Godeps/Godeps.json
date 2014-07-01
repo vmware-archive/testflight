@@ -20,31 +20,31 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/client",
-			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+			"Rev": "1758c54f1e20106f100b42434b005ca7881f1418"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/protocol",
-			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+			"Rev": "1758c54f1e20106f100b42434b005ca7881f1418"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/routes",
-			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+			"Rev": "1758c54f1e20106f100b42434b005ca7881f1418"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/transport",
-			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+			"Rev": "1758c54f1e20106f100b42434b005ca7881f1418"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/warden",
-			"Rev": "01e2759ebeacba0f21c5829041eb42a98958bf2c"
+			"Rev": "1758c54f1e20106f100b42434b005ca7881f1418"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "f7885e9908e8b597be9e8a518c13dc39d6063a36"
+			"Rev": "81095739f8a521225aa39a5d0bb521648817e613"
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/redisrunner",
-			"Rev": "245b3339e3324d4ca33f2d3a18b799e2e70fce0a"
+			"Rev": "7f42bc615f8fda1dc20c934462c44dc3a2087d8e"
 		},
 		{
 			"ImportPath": "github.com/garyburd/redigo/redis",
@@ -68,8 +68,8 @@
 			"Rev": "439138de94ac33aebc7dad33cada3796318845ea"
 		},
 		{
-			"ImportPath": "github.com/tedsuo/router",
-			"Rev": "e148496de27fab9f10ef07f3be00471fa59f58b9"
+			"ImportPath": "github.com/tedsuo/rata",
+			"Rev": "ffbc6810b2dff37aade33e5bf1ee8deadafe867d"
 		}
 	]
 }

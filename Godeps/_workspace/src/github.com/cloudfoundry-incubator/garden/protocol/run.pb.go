@@ -15,10 +15,12 @@ var _ = math.Inf
 
 type RunRequest struct {
 	Handle           *string                `protobuf:"bytes,1,req,name=handle" json:"handle,omitempty"`
-	Script           *string                `protobuf:"bytes,2,req,name=script" json:"script,omitempty"`
+	Path             *string                `protobuf:"bytes,2,req,name=path" json:"path,omitempty"`
 	Privileged       *bool                  `protobuf:"varint,3,opt,name=privileged,def=0" json:"privileged,omitempty"`
 	Rlimits          *ResourceLimits        `protobuf:"bytes,4,opt,name=rlimits" json:"rlimits,omitempty"`
 	Env              []*EnvironmentVariable `protobuf:"bytes,5,rep,name=env" json:"env,omitempty"`
+	Args             []string               `protobuf:"bytes,6,rep,name=args" json:"args,omitempty"`
+	Dir              *string                `protobuf:"bytes,7,opt,name=dir" json:"dir,omitempty"`
 	XXX_unrecognized []byte                 `json:"-"`
 }
 
@@ -35,9 +37,9 @@ func (m *RunRequest) GetHandle() string {
 	return ""
 }
 
-func (m *RunRequest) GetScript() string {
-	if m != nil && m.Script != nil {
-		return *m.Script
+func (m *RunRequest) GetPath() string {
+	if m != nil && m.Path != nil {
+		return *m.Path
 	}
 	return ""
 }
@@ -61,6 +63,20 @@ func (m *RunRequest) GetEnv() []*EnvironmentVariable {
 		return m.Env
 	}
 	return nil
+}
+
+func (m *RunRequest) GetArgs() []string {
+	if m != nil {
+		return m.Args
+	}
+	return nil
+}
+
+func (m *RunRequest) GetDir() string {
+	if m != nil && m.Dir != nil {
+		return *m.Dir
+	}
+	return ""
 }
 
 func init() {

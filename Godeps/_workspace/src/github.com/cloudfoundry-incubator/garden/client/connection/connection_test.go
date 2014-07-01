@@ -822,7 +822,9 @@ var _ = Describe("Connection", func() {
 						ghttp.VerifyRequest("POST", "/containers/foo-handle/processes"),
 						verifyProtoBody(&protocol.RunRequest{
 							Handle:     proto.String("foo-handle"),
-							Script:     proto.String("lol"),
+							Path:       proto.String("lol"),
+							Args:       []string{"arg1", "arg2"},
+							Dir:        proto.String("/some/dir"),
 							Privileged: proto.Bool(true),
 							Rlimits: &protocol.ResourceLimits{
 								As:         proto.Uint64(1),
@@ -851,7 +853,9 @@ var _ = Describe("Connection", func() {
 
 			It("should start the process and stream output", func(done Done) {
 				pid, stream, err := connection.Run("foo-handle", warden.ProcessSpec{
-					Script:     "lol",
+					Path:       "lol",
+					Args:       []string{"arg1", "arg2"},
+					Dir:        "/some/dir",
 					Privileged: true,
 					Limits:     resourceLimits,
 				})
@@ -884,7 +888,8 @@ var _ = Describe("Connection", func() {
 						ghttp.VerifyRequest("POST", "/containers/foo-handle/processes"),
 						verifyProtoBody(&protocol.RunRequest{
 							Handle:     proto.String("foo-handle"),
-							Script:     proto.String("echo hi"),
+							Path:       proto.String("echo"),
+							Args:       []string{"hi"},
 							Privileged: proto.Bool(false),
 							Rlimits:    &protocol.ResourceLimits{},
 						}),
@@ -895,7 +900,8 @@ var _ = Describe("Connection", func() {
 						ghttp.VerifyRequest("POST", "/containers/foo-handle/processes"),
 						verifyProtoBody(&protocol.RunRequest{
 							Handle:     proto.String("foo-handle"),
-							Script:     proto.String("echo bye"),
+							Path:       proto.String("echo"),
+							Args:       []string{"bye"},
 							Privileged: proto.Bool(false),
 							Rlimits:    &protocol.ResourceLimits{},
 						}),
@@ -905,7 +911,8 @@ var _ = Describe("Connection", func() {
 
 			It("should be able to spawn multiple processes sequentially", func() {
 				pid, _, err := connection.Run("foo-handle", warden.ProcessSpec{
-					Script: "echo hi",
+					Path: "echo",
+					Args: []string{"hi"},
 				})
 				Ω(err).ShouldNot(HaveOccurred())
 				Ω(pid).Should(BeNumerically("==", 42))
@@ -915,7 +922,8 @@ var _ = Describe("Connection", func() {
 				time.Sleep(1 * time.Second)
 
 				pid, _, err = connection.Run("foo-handle", warden.ProcessSpec{
-					Script: "echo bye",
+					Path: "echo",
+					Args: []string{"bye"},
 				})
 				Ω(err).ShouldNot(HaveOccurred())
 				Ω(pid).Should(BeNumerically("==", 43))

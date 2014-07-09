@@ -44,8 +44,8 @@ type ProcessSpec struct {
 
 type ProcessIO struct {
 	Stdin  io.Reader
-	Stdout io.WriteCloser
-	Stderr io.WriteCloser
+	Stdout io.Writer
+	Stderr io.Writer
 }
 
 type Process interface {
@@ -144,11 +144,6 @@ type MemoryLimits struct {
 
 type CPULimits struct {
 	LimitInShares uint64
-}
-
-type EnvironmentVariable struct {
-	Key   string
-	Value string
 }
 
 type ResourceLimits struct {

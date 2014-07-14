@@ -40,7 +40,7 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "9113a0207202d89f0e6740875ac464c57e391128"
+			"Rev": "819d17af98c8e69f7cbfc9978b65f4b8330e82ff"
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/redisrunner",
@@ -49,6 +49,11 @@
 		{
 			"ImportPath": "github.com/garyburd/redigo/redis",
 			"Rev": "204566ad8c530fe658a939ff8d1857ad6f6012d2"
+		},
+		{
+			"ImportPath": "github.com/kr/pty",
+			"Comment": "release.r56-19-g67e2db2",
+			"Rev": "67e2db24c831afa6c64fc17b4a143390674365ef"
 		},
 		{
 			"ImportPath": "github.com/nu7hatch/gouuid",

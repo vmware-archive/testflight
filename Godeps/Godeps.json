@@ -20,40 +20,40 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/client",
-			"Rev": "3c5f76f22096ab6b4565a9d5b81cce44584df400"
+			"Comment": "go-wshd-586-ge38da7b",
+			"Rev": "e38da7b145595dc5451ba7dd70f0a9d5ebb8081c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/protocol",
-			"Rev": "3c5f76f22096ab6b4565a9d5b81cce44584df400"
+			"Comment": "go-wshd-586-ge38da7b",
+			"Rev": "e38da7b145595dc5451ba7dd70f0a9d5ebb8081c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/routes",
-			"Rev": "3c5f76f22096ab6b4565a9d5b81cce44584df400"
+			"Comment": "go-wshd-586-ge38da7b",
+			"Rev": "e38da7b145595dc5451ba7dd70f0a9d5ebb8081c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/transport",
-			"Rev": "3c5f76f22096ab6b4565a9d5b81cce44584df400"
+			"Comment": "go-wshd-586-ge38da7b",
+			"Rev": "e38da7b145595dc5451ba7dd70f0a9d5ebb8081c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/garden/warden",
-			"Rev": "3c5f76f22096ab6b4565a9d5b81cce44584df400"
+			"Comment": "go-wshd-586-ge38da7b",
+			"Rev": "e38da7b145595dc5451ba7dd70f0a9d5ebb8081c"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "819d17af98c8e69f7cbfc9978b65f4b8330e82ff"
+			"Rev": "22bd7b4cd66b24cb1be7f4d99d1934eb73fedb32"
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/redisrunner",
-			"Rev": "e0d2970ef0e21ee1dc577a0630ab58daf4f345f2"
+			"Rev": "1f173d67ccef1a03712946d2f13b3c6ae9de307a"
 		},
 		{
 			"ImportPath": "github.com/garyburd/redigo/redis",
-			"Rev": "204566ad8c530fe658a939ff8d1857ad6f6012d2"
-		},
-		{
-			"ImportPath": "github.com/kr/pty",
-			"Comment": "release.r56-19-g67e2db2",
-			"Rev": "67e2db24c831afa6c64fc17b4a143390674365ef"
+			"Rev": "6628c86d6a89ce7983c7c9b5e98c1df795fbd256"
 		},
 		{
 			"ImportPath": "github.com/nu7hatch/gouuid",
@@ -61,8 +61,8 @@
 		},
 		{
 			"ImportPath": "github.com/onsi/ginkgo",
-			"Comment": "v1.0.0-18-gb8a1dc9",
-			"Rev": "b8a1dc909067ac17581903a056b5a709fc74c779"
+			"Comment": "v1.0.0-24-g9f2bf87",
+			"Rev": "9f2bf87d6050a4e6d18c14fd0970c81e467622ef"
 		},
 		{
 			"ImportPath": "github.com/onsi/gomega",
@@ -74,7 +74,7 @@
 		},
 		{
 			"ImportPath": "github.com/tedsuo/ifrit",
-			"Rev": "21ef26b2e0107e0ce523244608e430db73a353bd"
+			"Rev": "52d5ae8c0a69e6e3d6f9cc407ab76345b00b3129"
 		},
 		{
 			"ImportPath": "github.com/tedsuo/rata",

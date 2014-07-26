@@ -11,8 +11,12 @@
 		},
 		{
 			"ImportPath": "code.google.com/p/goprotobuf/proto",
-			"Comment": "go.r60-146",
-			"Rev": "f5ac12b15e49095c60ae0acc6da0e28d47e2a29f"
+			"Comment": "go.r60-149",
+			"Rev": "616d4b420266ce21bf4398860608c28d561361db"
+		},
+		{
+			"ImportPath": "github.com/BurntSushi/migration",
+			"Rev": "c45b897f13350786ccaf2b7403b92b1c7ad85844"
 		},
 		{
 			"ImportPath": "github.com/bmizerany/pat",
@@ -45,15 +49,15 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "22bd7b4cd66b24cb1be7f4d99d1934eb73fedb32"
+			"Rev": "1e4e924447430b19078e30f19a7a4adaf34dc8b6"
 		},
 		{
-			"ImportPath": "github.com/concourse/atc/redisrunner",
-			"Rev": "1f173d67ccef1a03712946d2f13b3c6ae9de307a"
+			"ImportPath": "github.com/concourse/atc/db/migrations",
+			"Rev": "68110626e33889ed609bcfd6a6ee66c21d260a42"
 		},
 		{
-			"ImportPath": "github.com/garyburd/redigo/redis",
-			"Rev": "6628c86d6a89ce7983c7c9b5e98c1df795fbd256"
+			"ImportPath": "github.com/concourse/atc/postgresrunner",
+			"Rev": "68110626e33889ed609bcfd6a6ee66c21d260a42"
 		},
 		{
 			"ImportPath": "github.com/nu7hatch/gouuid",
@@ -61,12 +65,12 @@
 		},
 		{
 			"ImportPath": "github.com/onsi/ginkgo",
-			"Comment": "v1.0.0-24-g9f2bf87",
-			"Rev": "9f2bf87d6050a4e6d18c14fd0970c81e467622ef"
+			"Comment": "v1.0.0-26-g34294d5",
+			"Rev": "34294d53b098180c6e983307c0439a6b30a16b43"
 		},
 		{
 			"ImportPath": "github.com/onsi/gomega",
-			"Rev": "efd113280743f90026f1dc18b93ca5355d8df0bf"
+			"Rev": "28e5ce936abc528d8c6b5eb3dd5689e7e81e9272"
 		},
 		{
 			"ImportPath": "github.com/pivotal-golang/lager",
@@ -74,7 +78,7 @@
 		},
 		{
 			"ImportPath": "github.com/tedsuo/ifrit",
-			"Rev": "52d5ae8c0a69e6e3d6f9cc407ab76345b00b3129"
+			"Rev": "435f9e78ed02262ec0d1e13a82b5a475c990714a"
 		},
 		{
 			"ImportPath": "github.com/tedsuo/rata",

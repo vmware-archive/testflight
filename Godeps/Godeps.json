@@ -53,11 +53,11 @@
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/db/migrations",
-			"Rev": "68110626e33889ed609bcfd6a6ee66c21d260a42"
+			"Rev": "01fd8deea994425de93c7150e4ca1e0fb40c34d0"
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/postgresrunner",
-			"Rev": "68110626e33889ed609bcfd6a6ee66c21d260a42"
+			"Rev": "01fd8deea994425de93c7150e4ca1e0fb40c34d0"
 		},
 		{
 			"ImportPath": "github.com/nu7hatch/gouuid",

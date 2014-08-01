@@ -49,7 +49,7 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/warden-linux/integration/runner",
-			"Rev": "1e4e924447430b19078e30f19a7a4adaf34dc8b6"
+			"Rev": "1f7c907966c933498704da24e53850bd59c8f9e1"
 		},
 		{
 			"ImportPath": "github.com/concourse/atc/db/migrations",

@@ -12,7 +12,6 @@ import (
 
 	"github.com/cloudfoundry-incubator/garden/client"
 	"github.com/cloudfoundry-incubator/garden/client/connection"
-	"github.com/cloudfoundry-incubator/garden/warden"
 	"github.com/onsi/ginkgo"
 	"github.com/pivotal-golang/lager"
 	"github.com/tedsuo/ifrit"
@@ -31,10 +30,17 @@ type Runner struct {
 	binPath    string
 	rootFSPath string
 
-	tmpdir string
+	tmpdir    string
+	graphPath string
+
+	debugAddr string
 }
 
-func New(network, addr string, bin, binPath, rootFSPath string, argv ...string) *Runner {
+func New(network, addr string, bin, binPath, rootFSPath, graphPath string, argv ...string) *Runner {
+	if graphPath == "" {
+		graphPath = os.TempDir()
+	}
+
 	return &Runner{
 		network: network,
 		addr:    addr,
@@ -44,12 +50,17 @@ func New(network, addr string, bin, binPath, rootFSPath string, argv ...string) 
 
 		binPath:    binPath,
 		rootFSPath: rootFSPath,
-
+		graphPath:  filepath.Join(graphPath, fmt.Sprintf("test-warden-%d", ginkgo.GinkgoParallelNode())),
 		tmpdir: filepath.Join(
 			os.TempDir(),
 			fmt.Sprintf("test-warden-%d", ginkgo.GinkgoParallelNode()),
 		),
+		debugAddr: fmt.Sprintf("0.0.0.0:%d", 15000+ginkgo.GinkgoParallelNode()),
 	}
+}
+
+func (r *Runner) DebugAddr() string {
+	return r.debugAddr
 }
 
 func (r *Runner) Run(signals <-chan os.Signal, ready chan<- struct{}) error {
@@ -64,7 +75,6 @@ func (r *Runner) Run(signals <-chan os.Signal, ready chan<- struct{}) error {
 	depotPath := filepath.Join(r.tmpdir, "containers")
 	overlaysPath := filepath.Join(r.tmpdir, "overlays")
 	snapshotsPath := filepath.Join(r.tmpdir, "snapshots")
-	graphPath := filepath.Join(r.tmpdir, "graph")
 
 	if err := os.MkdirAll(depotPath, 0755); err != nil {
 		return err
@@ -81,9 +91,10 @@ func (r *Runner) Run(signals <-chan os.Signal, ready chan<- struct{}) error {
 		"--bin", r.binPath,
 		"--rootfs", r.rootFSPath,
 		"--depot", depotPath,
+		"--debugAddr", r.debugAddr,
 		"--overlays", overlaysPath,
 		"--snapshots", snapshotsPath,
-		"--graph", graphPath,
+		"--graph", r.graphPath,
 		"--logLevel", "debug",
 		"--disableQuotas",
 		"--networkPool", fmt.Sprintf("10.250.%d.0/24", ginkgo.GinkgoParallelNode()),
@@ -154,7 +165,7 @@ func (r *Runner) TryDial() error {
 	return dialErr
 }
 
-func (r *Runner) NewClient() warden.Client {
+func (r *Runner) NewClient() client.Client {
 	return client.New(connection.New(r.network, r.addr))
 }
 

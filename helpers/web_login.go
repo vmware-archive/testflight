@@ -14,14 +14,19 @@ func WebLogin(page *agouti.Page, atcURL string) error {
 }
 
 func basicAuthenticationWeb(page *agouti.Page, atcURL string) error {
-	token, err := GetATCToken(atcURL)
+	authToken, csrfToken, err := GetATCToken(atcURL)
 	if err != nil {
 		return err
 	}
 
 	page.SetCookie(&http.Cookie{
-		Name:  auth.CookieName,
-		Value: string(token.Type) + " " + string(token.Value),
+		Name:  auth.AuthCookieName,
+		Value: string(authToken.Type) + " " + string(authToken.Value),
+	})
+
+	page.SetCookie(&http.Cookie{
+		Name:  auth.CSRFCookieName,
+		Value: csrfToken,
 	})
 
 	// PhantomJS won't send the cookie on ajax requests if the page is not

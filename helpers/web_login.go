@@ -14,7 +14,7 @@ func WebLogin(page *agouti.Page, atcURL string) error {
 }
 
 func basicAuthenticationWeb(page *agouti.Page, atcURL string) error {
-	authToken, csrfToken, err := GetATCToken(atcURL)
+	authToken, csrfToken, err := GetATCToken(atcURL, "main")
 	if err != nil {
 		return err
 	}

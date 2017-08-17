@@ -13,14 +13,14 @@ import (
 	"github.com/concourse/go-concourse/concourse"
 )
 
-func ConcourseClient(atcURL string) concourse.Client {
-	authToken, _, _ := GetATCToken(atcURL)
+func ConcourseClient(atcURL, teamName string) concourse.Client {
+	authToken, _, _ := GetATCToken(atcURL, teamName)
 	httpClient := oauthClient(authToken)
 	return concourse.NewClient(atcURL, httpClient, false)
 }
 
-func GetATCToken(atcURL string) (*atc.AuthToken, string, error) {
-	response, err := httpClient().Get(atcURL + "/api/v1/teams/main/auth/token")
+func GetATCToken(atcURL, teamName string) (*atc.AuthToken, string, error) {
+	response, err := httpClient().Get(atcURL + "/api/v1/teams/"+ teamName +"/auth/token")
 	if err != nil {
 		return nil, "", err
 	}

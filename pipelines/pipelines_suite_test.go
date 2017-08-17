@@ -40,7 +40,7 @@ var _ = SynchronizedBeforeSuite(func() []byte {
 	data, err := helpers.FirstNodeFlySetup(atcURL, helpers.TargetedConcourse)
 	Expect(err).NotTo(HaveOccurred())
 
-	client := helpers.ConcourseClient(atcURL)
+	client := helpers.ConcourseClient(atcURL, "main")
 
 	gitserver.Cleanup(client)
 	guidserver.Cleanup(client)

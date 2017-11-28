@@ -2,7 +2,6 @@ package pipelines_test
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/concourse/testflight/gitserver"
 	. "github.com/onsi/ginkgo"
@@ -145,7 +144,6 @@ var _ = Describe("Configuring a resource type in a pipeline config", func() {
 		})
 
 		It("can use a custom resource with parameters", func() {
-			time.Sleep(30 * time.Second)
 			watch := flyHelper.TriggerJob(pipelineName, "resource-test")
 			<-watch.Exited
 			Expect(watch.ExitCode()).To(Equal(0))

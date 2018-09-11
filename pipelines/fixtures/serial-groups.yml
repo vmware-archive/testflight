@@ -5,6 +5,7 @@ resources:
     source:
       uri: {{origin-git-server}}
       branch: master
+      unique-hash: {{hash}}
 
   - name: fake-git-resource
     type: git

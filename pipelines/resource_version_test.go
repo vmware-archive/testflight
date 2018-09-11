@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/concourse/testflight/gitserver"
+	uuid "github.com/nu7hatch/gouuid"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
@@ -26,10 +27,14 @@ var _ = Describe("Resource version", func() {
 	Describe("when the version is not pinned on the resource", func() {
 		Describe("version: latest", func() {
 			It("only runs builds with latest version", func() {
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ConfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/simple-trigger.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
+					"-v", "hash="+hash.String(),
 				)
 
 				guid1 := originGitServer.Commit()
@@ -56,10 +61,14 @@ var _ = Describe("Resource version", func() {
 
 		Describe("version: every", func() {
 			It("runs builds with every version", func() {
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ConfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/resource-version-every.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
+					"-v", "hash="+hash.String(),
 				)
 
 				guid1 := originGitServer.Commit()
@@ -87,10 +96,14 @@ var _ = Describe("Resource version", func() {
 			It("only runs builds with the pinned version", func() {
 				guid1 := originGitServer.Commit()
 
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ConfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/resource-version-every.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
+					"-v", "hash="+hash.String(),
 				)
 
 				watch := flyHelper.Watch(pipelineName, "some-passing-job")
@@ -108,6 +121,7 @@ var _ = Describe("Resource version", func() {
 					"-c", "fixtures/pinned-version.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
 					"-v", "git-resource-version="+rev,
+					"-v", "hash="+hash.String(),
 				)
 
 				flyHelper.UnpausePipeline(pipelineName)
@@ -132,11 +146,15 @@ var _ = Describe("Resource version", func() {
 				rev2 := strings.TrimSpace(originGitServer.RevParse("master"))
 				originGitServer.Commit()
 
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ConfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/pinned-resource-simple-trigger.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
 					"-v", "pinned-resource-version="+rev2,
+					"-v", "hash="+hash.String(),
 				)
 				flyHelper.UnpausePipeline(pipelineName)
 
@@ -163,11 +181,15 @@ var _ = Describe("Resource version", func() {
 				rev2 := strings.TrimSpace(originGitServer.RevParse("master"))
 				originGitServer.Commit()
 
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ConfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/pinned-resource-version-every.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
 					"-v", "pinned-resource-version="+rev2,
+					"-v", "hash="+hash.String(),
 				)
 
 				flyHelper.UnpausePipeline(pipelineName)
@@ -197,12 +219,16 @@ var _ = Describe("Resource version", func() {
 				rev3 := strings.TrimSpace(originGitServer.RevParse("master"))
 				originGitServer.Commit()
 
+				hash, err := uuid.NewV4()
+				Expect(err).ToNot(HaveOccurred())
+
 				flyHelper.ReconfigurePipeline(
 					pipelineName,
 					"-c", "fixtures/pinned-resource-pinned-version.yml",
 					"-v", "origin-git-server="+originGitServer.URI(),
 					"-v", "pinned-resource-version="+rev2,
 					"-v", "git-resource-version="+rev3,
+					"-v", "hash="+hash.String(),
 				)
 
 				flyHelper.UnpausePipeline(pipelineName)

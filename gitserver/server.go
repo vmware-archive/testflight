@@ -331,9 +331,7 @@ cp -a /root rootfs/root
 cp -a /some-file rootfs/some-file
 echo '{"env":["SOME_ENV=yep"]}' > metadata.json
 
-cat <<EOR
-{"version":{"timestamp":"\$(date +%s)"},"metadata":[{"name":"some","value":"metadata"}]}
-EOR
+jq '{version: .version, metadata:[{name:"some", value:"metadata"}]}'
 EOF
 
 				cat > rootfs/opt/resource/out <<EOF

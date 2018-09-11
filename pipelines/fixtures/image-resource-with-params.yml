@@ -5,6 +5,7 @@ resources:
   source:
     uri: {{origin-git-server}}
     branch: master
+    unique: {{hash}}
 
 jobs:
 - name: without-params
@@ -27,6 +28,7 @@ jobs:
         source:
           uri: {{origin-git-server}}
           branch: master
+          unique: {{hash}}
         params:
           foo: bar
       run:
@@ -42,5 +44,6 @@ jobs:
         source:
           uri: {{origin-git-server}}
           branch: master
+          unique: {{hash}}
       run:
         path: /bin/true

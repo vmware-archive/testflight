@@ -10,7 +10,6 @@ import (
 	"github.com/onsi/gomega/gexec"
 )
 
-// XXX: make it better
 var _ = Describe("Resource-types checks", func() {
 
 	Context("Updating resource types", func() {
@@ -42,16 +41,15 @@ var _ = Describe("Resource-types checks", func() {
 			originGitServer.CommitFileToBranch("new-contents", "rootfs/some-file", "master")
 			originGitServer.CommitFileToBranch("new-version", "rootfs/version", "master")
 
-			buildNum := 2
-			Eventually(func() *gexec.Session {
-				By("watching for resource-imgur with updated resource type")
-				originGitServer.CommitFileToBranch(fmt.Sprintf("trigger %d", buildNum), "trigger", "trigger")
+			flyHelper.CheckResourceType("-r", pipelineName+"/custom-resource-type")
 
-				watch = flyHelper.Watch(pipelineName, "resource-imgur", fmt.Sprintf("%d", buildNum))
-				Expect(watch).To(gexec.Exit(0))
-				buildNum += 1
-				return watch
-			}, "10s").Should(gbytes.Say("new-contents"))
+			buildNum := 2
+			By("watching for resource-imgur with updated resource type")
+			originGitServer.CommitFileToBranch(fmt.Sprintf("trigger %d", buildNum), "trigger", "trigger")
+
+			watch = flyHelper.Watch(pipelineName, "resource-imgur", fmt.Sprintf("%d", buildNum))
+			Eventually(watch).Should(gexec.Exit(0))
+			Expect(watch).To(gbytes.Say("new-contents"))
 		})
 	})
 

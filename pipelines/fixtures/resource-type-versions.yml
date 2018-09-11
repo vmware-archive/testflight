@@ -1,0 +1,46 @@
+---
+resource_types:
+- name: custom
+  type: git
+  source:
+    uri: {{origin-git-server}}
+    branch: master
+    unique: {{hash}}
+
+resources:
+- name: some-resource
+  type: custom
+  source: {}
+
+jobs:
+- name: initial-job
+  plan:
+  - get: some-resource
+    trigger: true
+  - task: print-fetched-stuff
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: {repository: busybox}
+      inputs:
+      - name: some-resource
+      run:
+        path: test
+        args: ["-e", "some-resource/rootfs/some-file"]
+
+- name: passed-job
+  plan:
+  - get: some-resource
+    passed: [initial-job]
+  - task: print-fetched-stuff
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: {repository: busybox}
+      inputs:
+      - name: some-resource
+      run:
+        path: test
+        args: ["-e", "some-resource/rootfs/some-file"]

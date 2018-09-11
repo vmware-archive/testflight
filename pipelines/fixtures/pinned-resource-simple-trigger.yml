@@ -6,6 +6,7 @@ resources:
     source:
       uri: {{origin-git-server}}
       branch: master
+      unique: {{hash}}
 
 jobs:
   - name: some-passing-job

@@ -1,7 +1,5 @@
-# testflight
+# moved to [`concourse/concourse`](https://github.com/concourse/concourse)
 
-![Paper Plane](http://i.imgur.com/C3l6ZI3.jpg)
-
-## about
-
-`testflight` is the integration test suite for Concourse.
+This repository has been incorporated into the [`concourse/concourse`
+repo](https://github.com/concourse/concourse) as part of [The Great Project
+Restructuring of 2018](https://github.com/concourse/concourse/issues/2534).
